@@ -1,47 +1,41 @@
-<!--
-  <<< Author notes: Step 2 >>>
-  Start this step by acknowledging the previous step.
-  Define terms and link to docs.github.com.
--->
+## 2단계: BFG Repo-Cleaner를 사용하여 Git 히스토리에서 파일 제거하기
 
-## Step 2: Removing a file from Git history using BFG Repo-Cleaner
+_저장소의 루트 디렉토리에서 `.env`를 제거했습니다! :tada:_
 
-_You removed `.env` from the repository's root directory! :tada:_
+파일을 삭제했으므로 GitHub.com에서 저장소를 탐색하거나 최신 커밋만 보는 사람은 파일을 볼 수 없습니다. 하지만 Git의 특성상 파일은 여전히 히스토리에 남아있습니다. 이 단계에서는 저장소 히스토리에서 파일을 제거하는 작업을 하겠습니다.
 
-Now that we've deleted the file, people that browse the repository on GitHub.com or anyone looking at just the head commit won't see the file. However, due to Git's nature, the file is still present in the history. In this step, we'll work on removing the file from the repository history.
+**_head 커밋_이란?** Git에서 HEAD는 브랜치나 커밋을 가리킵니다. [head 커밋](https://docs.github.com/en/get-started/quickstart/github-glossary#head)이라고 하면 보통 저장소 히스토리의 가장 최신 커밋을 의미합니다.
 
-**What is a _head commit_**? In Git, HEAD points to a branch or a commit. When we say [head commit](https://docs.github.com/en/get-started/quickstart/github-glossary#head), we usually mean the most recent commit in the repository's history.
+Git 히스토리를 제거하는 여러 도구가 있으며, 이 단계에서는 BFG Repo-Cleaner를 사용합니다. [GitHub Docs의 BFG 사용하기](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository#using-the-bfg)에서 추가 문서를 찾을 수 있습니다.
 
-There are multiple tools available for removing Git history, we'll use BFG Repo-Cleaner in this step. You can find additional documentation on [Using the BFG in GitHub Docs](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository#using-the-bfg).
+**_BFG Repo-Cleaner_란?** BFG Repo-Cleaner는 저장소 히스토리를 검색하고 변경하는 데 도움이 되는 소프트웨어입니다. Git은 기본적으로 [`git filter-repo`](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository#using-git-filter-repo)를 사용하여 이 작업을 할 수 있지만, 더 복잡할 수 있습니다.
 
-**What is _BFG Repo-Cleaner_**? BFG Repo-Cleaner is software that can help you search through and alter repository history. Git can natively do this using [`git filter-repo`](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository#using-git-filter-repo), but it can be more complex.
+### :keyboard: 활동: BFG Repo-Cleaner를 사용하여 `.env` 파일 제거하기
 
-### :keyboard: Activity: Use BFG Repo-Cleaner to remove the `.env` file
-
-1. Update the local copy of your repository to ensure you have the most recent version of the course files.
+1. 로컬 저장소의 복사본을 업데이트하여 최신 버전의 실습 파일을 가져오세요.
    ```shell
    git pull
    ```
-2. Install BFG Repo-Cleaner on your machine. You can follow the [instructions on the web site](https://rtyley.github.io/bfg-repo-cleaner/) to do so or you can use a package manager for your operating system.
-3. Confirm the `.env` file is removed from the root directory. The command should return empty.
+2. BFG Repo-Cleaner를 컴퓨터에 설치하세요. [웹사이트의 지침](https://rtyley.github.io/bfg-repo-cleaner/)을 따르거나 운영체제의 패키지 관리자를 사용할 수 있습니다.
+3. `.env` 파일이 루트 디렉토리에서 제거되었는지 확인하세요. 명령어가 비어있어야 합니다.
    ```shell
    find . -name ".env"
    ```
-4. Search for .env in the repository's history. The command should return at least 2 commits: the addition of `.env` when you copied this template repository, and the removal of `.env`.
+4. 저장소의 히스토리에서 .env를 검색하세요. 명령어가 최소 2개의 커밋을 반환해야 합니다: 템플릿 저장소를 복사할 때 `.env`가 추가된 것과 `.env`가 제거된 것.
    ```shell
    git log --stat --all -- .env
    ```
-5. Use BFG Repo-Cleaner to delete all references to `.env` that exist in the repository.
+5. BFG Repo-Cleaner를 사용하여 저장소에 존재하는 `.env`에 대한 모든 참조를 삭제하세요.
    ```shell
    bfg --delete-files .env
    ```
-6. The tool will run and make some suggestions about some follow-up commands. Run those to get your local repository cleaned up.
-7. Repeat the search for `.env` in the repository's history. This time, the command should return empty.
+6. 도구가 실행되며 후속 명령에 대한 제안을 합니다. 로컬 저장소를 정리하기 위해 해당 명령을 실행하세요.
+7. 저장소의 히스토리에서 `.env` 검색을 반복하세요. 이번에는 명령어가 비어있어야 합니다.
    ```shell
    git log --stat --all -- .env
    ```
-8. Push your changes to GitHub. Note we're using the `--force` argument in this step since we're altering Git history.
+8. 변경사항을 GitHub에 푸시하세요. Git 히스토리를 변경하므로 이 단계에서는 `--force` 인자를 사용합니다.
    ```shell
    git push --force
    ```
-9. Wait about 20 seconds then refresh this page (the one you're following instructions from). [GitHub Actions](https://docs.github.com/en/actions) will automatically update to the next step.
+9. 약 20초 후 이 페이지(지침을 따르고 있는 페이지)를 새로고침하세요. [GitHub Actions](https://docs.github.com/en/actions)가 자동으로 다음 단계로 업데이트합니다.
