@@ -11,12 +11,14 @@ _"커밋 히스토리 변경"에 오신 것을 환영합니다! :wave:_
 파일 제거에 대한 추가 도움이 필요하면 [GitHub Docs의 파일 삭제](https://docs.github.com/en/repositories/working-with-files/managing-files/deleting-files-in-a-repository#deleting-a-file)를 참조하세요.
 
 ### :keyboard: 활동: 프로젝트 루트 디렉토리에서 `.env` 제거하기
-
 1. 터미널을 열고 이 저장소를 클론한 뒤 저장소 디렉토리로 이동하세요.
+   ![Git clone example](../images/git_clone.png)
    ```shell
    git clone <your-repository-url>
    cd <your-repository-name>
    ```
+   > **팁:** 저장소 페이지의 **Code** 버튼에서 `git clone` 명령어를 복사할 수 있습니다.
+
 2. 루트 디렉토리에서 `.env`를 삭제하세요.
    ```shell
    git rm .env
