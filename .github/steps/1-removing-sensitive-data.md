@@ -12,7 +12,7 @@ _"커밋 히스토리 변경"에 오신 것을 환영합니다! :wave:_
 
 ### :keyboard: 활동: 프로젝트 루트 디렉토리에서 `.env` 제거하기
 1. 터미널을 열고 이 저장소를 클론한 뒤 저장소 디렉토리로 이동하세요.
-   ![Git clone example](../images/git_clone.png)
+   ![Git clone example](.github/images/git_clone.png)
    ```shell
    git clone <your-repository-url>
    cd <your-repository-name>
